@@ -1,0 +1,12 @@
+#box_wrapper {
+  width: 10rem;
+  height: 10rem;
+}
+
+#box_title {
+  background-color: aqua;
+}
+
+#box_content {
+  background-color: bisque;
+}
