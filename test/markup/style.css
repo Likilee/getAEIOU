@@ -1,0 +1,72 @@
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  background-color: lightgray;
+  font-family: 'Courier New', Courier, monospace;
+  --contentWidth: 780px;
+  --color_p: #689f38;
+  --color_p_light: #99d066;
+  --color_p_dark: #387002;
+  --color_s: #ffa000;
+  --color_s_light: #ffd149;
+  --color_s_dark: #ffd149;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+img {
+  max-height: 100%;
+  max-width: 100%;
+  display:inline;
+}
+
+header {
+  background-color: white;
+  height: 64px;
+  padding: 4px 0px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+}
+
+nav {
+  background-color: yellow;
+}
+
+footer {
+  background-color: var(--color_p_light);
+  color: whitesmoke;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50px;
+}
+
+div.account {
+  background-color: thistle;
+}
+
+main {
+}
+
+.content_wrapper {
+  padding: 8px max(2rem, 50vw - var(--contentWidth) / 2);
+}
