@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import Box from './component/box';
+import PopOver from './component/popover';
 
 function App(): JSX.Element {
-  return <Box />;
+  return <PopOver />;
 }
 
 export default App;
