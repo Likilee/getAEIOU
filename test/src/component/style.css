@@ -1,20 +1,29 @@
-#box_wrapper {
-  width: 10rem;
-  height: 10rem;
-}
-
-#box_title {
-  background-color: aqua;
-}
-
-#box_content {
-  background-color: bisque;
-}
-
-#pop_over {
+/* Setting */
+.Setting {
+  background-color: blanchedalmond;
+  width: 50vw;
+  height: 50vh;
   display: flex;
-  position: absolute;
-  left: 50px;
-  top: 50px;
-  background-color: aquamarine;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.Title {
+  background-color: burlywood;
+}
+
+.Message {
+  background-color: chocolate;
+}
+
+.ProgressBar {
+  background-color: cornflowerblue;
+}
+
+.VowelInputPaner {
+  background-color:darkgreen;
+  width: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
