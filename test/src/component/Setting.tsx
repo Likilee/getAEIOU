@@ -1,3 +1,4 @@
+import {stringify} from 'querystring';
 import React, {useEffect, useReducer, useRef, useState} from 'react';
 import './style.css';
 // interface SettingProps {
@@ -7,33 +8,92 @@ import './style.css';
 function Title(): JSX.Element {
   return (
     <div className="Title">
-      <h3>Title</h3>
+      <h3>모음 입력</h3>
     </div>
   );
 }
 
-function Message(): JSX.Element {
+interface MessageProps {
+  currentVowel: string;
+}
+
+function Message(props: MessageProps): JSX.Element {
   return (
     <div className="Message">
-      <span>Message</span>
+      <span>{props.currentVowel} 입력 중</span>
     </div>
   );
 }
 
 function ProgressBar(): JSX.Element {
-  return <div className="ProgressBar">progressbars</div>;
+  const [progress, setProgress] = useState(0);
+
+  const timeOutID = setInterval(() => {
+    setProgress(previous => (previous < 100 ? previous + 1 : previous));
+  }, 100);
+  if (progress >= 100) clearTimeout(timeOutID);
+  return (
+    <div className="ProgressBar">
+      <div className="ProgressBar-inner" style={{width: `${progress}%`}}></div>
+    </div>
+  );
 }
 
-function VowelInputPanel(): JSX.Element {
-  return <div className="VowelInputPanel">1</div>;
+interface VowelInputPanelProps {
+  currentVowel: string;
+  onClick: (vowel: string) => void;
+}
+
+function VowelInputPanel(props: VowelInputPanelProps): JSX.Element {
+  return (
+    <div className="VowelInputPanel">
+      <div className="VowelInputPanel-item">
+        <button
+          onClick={() => {
+            props.onClick('아');
+          }}
+        ></button>
+      </div>
+      <div className="VowelInputPanel-item">
+        <button
+          onClick={() => {
+            props.onClick('이');
+          }}
+        ></button>
+      </div>{' '}
+      <div className="VowelInputPanel-item">
+        <button
+          onClick={() => {
+            props.onClick('우');
+          }}
+        ></button>
+      </div>{' '}
+      <div className="VowelInputPanel-item">
+        <button
+          onClick={() => {
+            props.onClick('에');
+          }}
+        ></button>
+      </div>{' '}
+      <div className="VowelInputPanel-item">
+        <button
+          onClick={() => {
+            props.onClick('오');
+          }}
+        ></button>
+      </div>
+    </div>
+  );
 }
 function Setting(): JSX.Element {
+  const [vowel, setVowel] = useState('아');
+
   return (
     <div className="Setting">
       <Title />
-      <Message />
+      <Message currentVowel={vowel} />
       <ProgressBar />
-      <VowelInputPanel />
+      <VowelInputPanel currentVowel={vowel} onClick={setVowel} />
     </div>
   );
 }

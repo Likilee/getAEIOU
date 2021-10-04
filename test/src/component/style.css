@@ -20,10 +20,29 @@
   background-color: cornflowerblue;
 }
 
-.VowelInputPaner {
-  background-color:darkgreen;
-  width: 10px;
+.VowelInputPanel {
+  background-color: darkgreen;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+}
+
+.VowelInputPanel-item {
+  width: 50px;
+  background-color: darkcyan;
+  margin: 10px;
+}
+
+.ProgressBar {
+  width: 100%;
+  background-color: grey;
+  overflow: hidden;
+}
+
+.ProgressBar-inner {
+  /* width: 1%; */
+  height: 30px;
+  background-color: green;
 }
