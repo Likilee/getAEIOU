@@ -25,13 +25,20 @@ function Message(props: MessageProps): JSX.Element {
   );
 }
 
-function ProgressBar(): JSX.Element {
+interface ProgressBarProps {
+  recording: boolean;
+}
+
+function ProgressBar(props: ProgressBarProps): JSX.Element {
   const [progress, setProgress] = useState(0);
 
-  const timeOutID = setInterval(() => {
-    setProgress(previous => (previous < 100 ? previous + 1 : previous));
-  }, 100);
-  if (progress >= 100) clearTimeout(timeOutID);
+  useEffect(() => {
+    const timeOutID = setInterval(() => {
+      setProgress(previous => (previous < 100 ? previous + 1 : previous));
+    }, 100);
+    if (progress >= 100) clearTimeout(timeOutID);
+  }, [props.recording]);
+
   return (
     <div className="ProgressBar">
       <div className="ProgressBar-inner" style={{width: `${progress}%`}}></div>
@@ -41,59 +48,50 @@ function ProgressBar(): JSX.Element {
 
 interface VowelInputPanelProps {
   currentVowel: string;
+  vowels: string[];
   onClick: (vowel: string) => void;
+}
+
+interface VowelInputItemProps {
+  onClick: () => void;
+}
+
+function VowelInputItem(props: VowelInputItemProps) {
+  return (
+    <div className="VowelInputPanel-item">
+      <button onClick={props.onClick}></button>
+    </div>
+  );
 }
 
 function VowelInputPanel(props: VowelInputPanelProps): JSX.Element {
   return (
     <div className="VowelInputPanel">
-      <div className="VowelInputPanel-item">
-        <button
-          onClick={() => {
-            props.onClick('아');
-          }}
-        ></button>
-      </div>
-      <div className="VowelInputPanel-item">
-        <button
-          onClick={() => {
-            props.onClick('이');
-          }}
-        ></button>
-      </div>{' '}
-      <div className="VowelInputPanel-item">
-        <button
-          onClick={() => {
-            props.onClick('우');
-          }}
-        ></button>
-      </div>{' '}
-      <div className="VowelInputPanel-item">
-        <button
-          onClick={() => {
-            props.onClick('에');
-          }}
-        ></button>
-      </div>{' '}
-      <div className="VowelInputPanel-item">
-        <button
-          onClick={() => {
-            props.onClick('오');
-          }}
-        ></button>
-      </div>
+      {props.vowels.map(vowel => {
+        const onClick = () => {
+          props.onClick(vowel);
+        };
+        return <VowelInputItem key={vowel} onClick={onClick} />;
+      })}
     </div>
   );
 }
+
 function Setting(): JSX.Element {
   const [vowel, setVowel] = useState('아');
+  const [recording, setRecording] = useState(false);
+  const vowels = ['아', '에', '이', '오', '우'];
 
   return (
     <div className="Setting">
       <Title />
       <Message currentVowel={vowel} />
-      <ProgressBar />
-      <VowelInputPanel currentVowel={vowel} onClick={setVowel} />
+      <ProgressBar recording={recording} />
+      <VowelInputPanel
+        vowels={vowels}
+        currentVowel={vowel}
+        onClick={setVowel}
+      />
     </div>
   );
 }
