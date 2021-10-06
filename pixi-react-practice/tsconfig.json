@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "src_pixi/pixi_test.js"  ]
 }
